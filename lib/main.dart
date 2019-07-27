@@ -67,7 +67,10 @@ class _MyHomePageState extends State<MyHomePage> {
     super.initState();
     _getAnimalList().then((value) {
       setState(() {
-        _animalList = value;
+        _animalList = value.map((v) {
+          // Capitalize
+          return v[0].toUpperCase() + v.substring(1);
+        }).toList();
       });
     });
   }
