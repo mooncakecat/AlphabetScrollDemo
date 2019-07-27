@@ -59,7 +59,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   double itemHeight = 24.0;
 
-  double alphabetScrollHeight;
+  // double alphabetScrollHeight;
+  double alphabetItemHeight = 16;
   double scrollPosition = 0.0;
 
   @override
@@ -90,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         body: LayoutBuilder(
           builder: (BuildContext context, BoxConstraints constraints) {
-            alphabetScrollHeight = constraints.biggest.height;
+            // alphabetScrollHeight = constraints.biggest.height;
             return Stack(
               children: <Widget>[
                 ListView.builder(
@@ -105,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   alignment: Alignment.centerRight,
                   child: LayoutBuilder(
                     builder: (_, BoxConstraints constraints) {
-                      alphabetScrollHeight = constraints.biggest.height;
+                      // alphabetScrollHeight = constraints.biggest.height;
                       return Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
@@ -122,12 +123,11 @@ class _MyHomePageState extends State<MyHomePage> {
                             },
                             child: LayoutBuilder(
                               builder: (_, BoxConstraints constraints) {
-                                alphabetScrollHeight =
-                                    constraints.biggest.height;
+                                // alphabetScrollHeight = constraints.biggest.height;
                                 return Column(
                                     children: widget.alphabetList
                                         .map((value) => Container(
-                                              height: 16,
+                                              height: alphabetItemHeight,
                                               child: Text(value,
                                                   style: Theme.of(context)
                                                       .textTheme
@@ -153,7 +153,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     // Calculate what letter we are at
     // int alphabetIndex = (alphabetScrollHeight / scrollPosition).floor();
-    int alphabetIndex = (scrollPosition / 16).floor();
+    int alphabetIndex = (scrollPosition / alphabetItemHeight).floor();
     String alphabet = widget.alphabetList[alphabetIndex];
 
     // Get the first item in our list for that alphabet
