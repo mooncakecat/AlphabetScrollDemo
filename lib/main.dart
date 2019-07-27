@@ -101,38 +101,43 @@ class _MyHomePageState extends State<MyHomePage> {
                     return Text(_animalList[index]);
                   },
                 ),
-                Positioned(
-                  right: 0,
+                Align(
+                  alignment: Alignment.centerRight,
                   child: LayoutBuilder(
                     builder: (_, BoxConstraints constraints) {
                       alphabetScrollHeight = constraints.biggest.height;
-                      return GestureDetector(
-                        onVerticalDragStart:
-                            (DragStartDetails dragStartDetails) {
-                          print(dragStartDetails.localPosition.dy);
-                          _scroll(dragStartDetails.localPosition.dy);
-                        },
-                        onVerticalDragUpdate:
-                            (DragUpdateDetails dragUpdateDetails) {
-                          print(dragUpdateDetails.localPosition.dy);
-                          _scroll(dragUpdateDetails.localPosition.dy);
-                        },
-                        child: LayoutBuilder(
-                          builder: (_, BoxConstraints constraints) {
-                            alphabetScrollHeight = constraints.biggest.height;
-                            return Column(
-                                mainAxisSize: MainAxisSize.max,
-                                children: widget.alphabetList
-                                    .map((value) => Container(
-                                          height: 16,
-                                          child: Text(value,
-                                              style: Theme.of(context)
-                                                  .textTheme
-                                                  .body2),
-                                        ))
-                                    .toList());
-                          },
-                        ),
+                      return Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          GestureDetector(
+                            onVerticalDragStart:
+                                (DragStartDetails dragStartDetails) {
+                              print(dragStartDetails.localPosition.dy);
+                              _scroll(dragStartDetails.localPosition.dy);
+                            },
+                            onVerticalDragUpdate:
+                                (DragUpdateDetails dragUpdateDetails) {
+                              print(dragUpdateDetails.localPosition.dy);
+                              _scroll(dragUpdateDetails.localPosition.dy);
+                            },
+                            child: LayoutBuilder(
+                              builder: (_, BoxConstraints constraints) {
+                                alphabetScrollHeight =
+                                    constraints.biggest.height;
+                                return Column(
+                                    children: widget.alphabetList
+                                        .map((value) => Container(
+                                              height: 16,
+                                              child: Text(value,
+                                                  style: Theme.of(context)
+                                                      .textTheme
+                                                      .body2),
+                                            ))
+                                        .toList());
+                              },
+                            ),
+                          ),
+                        ],
                       );
                     },
                   ),
