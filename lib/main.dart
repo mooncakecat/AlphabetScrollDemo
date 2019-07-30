@@ -57,11 +57,9 @@ class _MyHomePageState extends State<MyHomePage> {
   List<String> _animalList = [];
   ScrollController _animalListController = ScrollController();
 
-  double itemHeight = 24.0;
-
-  // double alphabetScrollHeight;
+  double listiItemHeight = 32;
   double alphabetItemHeight = 16;
-  double scrollPosition = 0.0;
+  double scrollPosition = 0;
 
   @override
   void initState() {
@@ -97,7 +95,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ListView.builder(
                   controller: _animalListController,
                   itemCount: _animalList.length,
-                  itemExtent: itemHeight,
+                  itemExtent: listiItemHeight,
                   itemBuilder: (BuildContext context, int index) {
                     return Text(_animalList[index]);
                   },
@@ -161,6 +159,6 @@ class _MyHomePageState extends State<MyHomePage> {
         (value) => value.toLowerCase().startsWith(alphabet.toLowerCase()));
 
     // Find the position to scroll to based on the height of each list item
-    _animalListController.jumpTo(animalIndex * itemHeight);
+    _animalListController.jumpTo(animalIndex * listiItemHeight);
   }
 }
